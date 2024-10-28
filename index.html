@@ -3,374 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Theme Header</title>
-    <link rel="stylesheet" href="protfolio.css">
+    <title>Binary Matrix Effect</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header class="dark-header">
-        <div class="container">
-            <h1 class="logo">Your Logo</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <canvas id="matrixCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
 
-    <!-- Content goes here -->
-	<section class="hero-section">
-        <div class="container">
-            <h1 class="hero-heading">Welcome to Your Website</h1>
-            <p class="hero-subtitle">Showcasing your skills and creativity</p>
-            <a href="#portfolio" class="cta-button">View Portfolio</a>
-        </div>
-    </section>
-	<!------------------------------------------>
-	    <section class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>I'm John Doe, a passionate web designer with expertise in HTML, CSS, and JavaScript. I have a background in graphic design and a keen eye for user experience.</p>
-                    <p>My goal is to create visually stunning and functional websites that leave a lasting impression on users.</p>
-                    <div class="skills-wrapper">
-                        <h3>Skills and Expertise</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>UI/UX Design</li>
-                            <li>Graphic Design</li>
-                            <!-- Add more skills as needed -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="about-photo">
-                    <img src="profile-photo.jpg" alt="Profile Photo">
-                </div>
-            </div>
-        </div>
-    </section>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-	<!----------------------------------------->
-    <section class="skills-section">
-        <div class="container">
-            <h2 class="section-heading">Skills and Expertise</h2>
-            <div class="skills-wrapper">
-                <div class="skill-item">
-                    <img src="icons/html-icon.png" alt="HTML Icon">
-                    <p>HTML</p>
-                </div>
-                <div class="skill-item">
-                    <img src="icons/css-icon.png" alt="CSS Icon">
-                    <p>CSS</p>
-                </div>
-                <div class="skill-item">
-                    <img src="icons/js-icon.png" alt="JavaScript Icon">
-                    <p>JavaScript</p>
-                </div>
-                <!-- Add more skills as needed -->
-            </div>
-            <div class="certifications">
-                <h3>Certifications</h3>
-                <ul>
-                    <li>Web Design Certification</li>
-                    <li>Graphic Design Masterclass</li>
-                    <!-- Add more certifications or awards -->
-                </ul>
-            </div>
-        </div>
-    </section>
-<!--------------Projects-------------------->
-<section class="portfolio-section">
-        <div class="container">
-            <h2 class="section-heading">Portfolio Highlights</h2>
-            <div class="portfolio-gallery">
-                <div class="portfolio-item">
-                    <img src="project1.jpg" alt="Project 1">
-                    <div class="overlay">
-                        <h3>Project 1 Title</h3>
-                        <p>Brief description of Project 1</p>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="project2.jpg" alt="Project 2">
-                    <div class="overlay">
-                        <h3>Project 2 Title</h3>
-                        <p>Brief description of Project 2</p>
-                    </div>
-                </div>
-                <!-- Add more portfolio items as needed -->
-            </div>
-        </div>
-    </section>
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-    <section class="project-details">
-        <div class="container">
-            <h2 class="section-heading">Project Details</h2>
-            <div class="project-item">
-                <h3>Project 1 Title</h3>
-                <p><strong>Client:</strong> Company ABC</p>
-                <p><strong>Role:</strong> Web Designer</p>
-                <p><strong>Tools/Technologies:</strong> HTML, CSS, JavaScript, Bootstrap</p>
-                <p>Detailed description of Project 1...</p>
-            </div>
-            <div class="project-item">
-                <h3>Project 2 Title</h3>
-                <p><strong>Client:</strong> Company XYZ</p>
-                <p><strong>Role:</strong> UI/UX Designer</p>
-                <p><strong>Tools/Technologies:</strong> Adobe XD, Sketch, InVision</p>
-                <p>Detailed description of Project 2...</p>
-            </div>
-            <!-- Add more project details as needed -->
-        </div>
-    </section>
-<!----------------==========================--------------->
-<section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-heading">Client Testimonials</h2>
-            <div class="testimonial-item">
-                <blockquote>
-                    "John's work is exceptional! He transformed our website and exceeded our expectations."
-                </blockquote>
-                <cite>- Jane Doe, Company ABC</cite>
-            </div>
-            <div class="testimonial-item">
-                <blockquote>
-                    "Highly recommend John for his creativity and attention to detail. Fantastic results!"
-                </blockquote>
-                <cite>- John Smith, Company XYZ</cite>
-            </div>
-            <!-- Add more testimonials as needed -->
-        </div>
-    </section>
+        const binaryColumns = Math.floor(canvas.width / 20);
+        const drops = Array.from({ length: binaryColumns }).fill(0);
 
-    <section class="services-section">
-        <div class="container">
-            <h2 class="section-heading">Services Offered</h2>
-            <div class="services-grid">
-                <div class="service-item">
-                    <h3>Web Design</h3>
-                    <p>Creative and user-friendly designs tailored to your brand.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Graphic Design</h3>
-                    <p>Eye-catching visuals for logos, banners, and marketing materials.</p>
-                </div>
-                <div class="service-item">
-                    <h3>UI/UX Design</h3>
-                    <p>Optimized user interfaces for seamless user experiences.</p>
-                </div>
-                <!-- Add more services as needed -->
-            </div>
-        </div>
-    </section>
-<!--oooooooooooooo-->
-<section class="process-section">
-        <div class="container">
-            <h2 class="section-heading">Our Creative Process</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <img src="icons/research-icon.png" alt="Research Icon">
-                    <h3>Research</h3>
-                    <p>Understanding client needs and industry trends.</p>
-                </div>
-                <div class="process-step">
-                    <img src="icons/design-icon.png" alt="Design Icon">
-                    <h3>Design</h3>
-                    <p>Creating mockups and wireframes for visual concepts.</p>
-                </div>
-                <div class="process-step">
-                    <img src="icons/development-icon.png" alt="Development Icon">
-                    <h3>Development</h3>
-                    <p>Implementing designs with coding and development tools.</p>
-                </div>
-                <div class="process-step">
-                    <img src="icons/testing-icon.png" alt="Testing Icon">
-                    <h3>Testing</h3>
-                    <p>Quality assurance and testing for functionality and performance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Fade effect
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    <section class="clientele-section">
-        <div class="container">
-            <h2 class="section-heading">Our Clientele</h2>
-            <div class="clientele-grid">
-                <div class="client-item">
-                    <img src="client1.jpg" alt="Client 1">
-                    <p>Company ABC</p>
-                </div>
-                <div class="client-item">
-                    <img src="client2.jpg" alt="Client 2">
-                    <p>Company XYZ</p>
-                </div>
-                <!-- Add more client items as needed -->
-            </div>
-        </div>
-    </section>
+            ctx.fillStyle = '#0F0'; // Green color
+            ctx.font = '20px monospace';
 
-    <!-- Content goes here -->
-    <section class="portfolio-gallery">
-        <div class="container">
-            <h2 class="section-heading">Portfolio Gallery</h2>
-            <div class="filter-options">
-                <button class="filter-button active" data-filter="all">All</button>
-                <button class="filter-button" data-filter="web-design">Web Design</button>
-                <button class="filter-button" data-filter="graphic-design">Graphic Design</button>
-                <button class="filter-button" data-filter="ui-ux">UI/UX Design</button>
-            </div>
-            <div class="gallery">
-                <div class="gallery-item web-design">
-                    <img src="project1.jpg" alt="Project 1">
-                </div>
-                <div class="gallery-item graphic-design">
-                    <img src="project2.jpg" alt="Project 2">
-                </div>
-                <div class="gallery-item ui-ux">
-                    <img src="project3.jpg" alt="Project 3">
-                </div>
-                <!-- Add more gallery items as needed -->
-            </div>
-        </div>
-    </section>
+            drops.forEach((y, x) => {
+                const text = Math.random() < 0.5 ? '0' : '1';
+                ctx.fillText(text, x * 20, y);
 
-    <section class="featured-projects">
-        <div class="container">
-            <h2 class="section-heading">Featured Projects</h2>
-            <div class="carousel">
-                <div class="slide">
-                    <img src="featured1.jpg" alt="Featured Project 1">
-                    <div class="project-info">
-                        <h3>Project 1 Title</h3>
-                        <p>Description of Project 1</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <img src="featured2.jpg" alt="Featured Project 2">
-                    <div class="project-info">
-                        <h3>Project 2 Title</h3>
-                        <p>Description of Project 2</p>
-                    </div>
-                </div>
-                <!-- Add more featured projects as needed -->
-            </div>
-        </div>
-    </section>
-	
-    <section class="contact-section">
-        <div class="container">
-            <h2>Contact Information</h2>
-            <ul>
-                <li><strong>Email:</strong> info@example.com</li>
-                <li><strong>Phone:</strong> +1 (123) 456-7890</li>
-                <li><strong>Address:</strong> 123 Main Street, City, Country</li>
-            </ul>
-            <!-- Add your map or directions here -->
-            <div id="map">
-                <!-- Replace this with your map iframe or directions -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.916672075133!2d106.84003031514291!3d-6.227894695476733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNjXCsDU0JzQ0LjYiUyAxMDbCsDE4JzQxLjciRQ!5e0!3m2!1sen!2sid!4v1648726179951!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[x] = 0;
+                } else {
+                    drops[x] = y + 20;
+                }
+            });
+        }
 
-    <section class="social-proof">
-        <div class="container">
-            <h2>Social Proof</h2>
-            <div class="social-media">
-                <a href="#" class="social-link">
-                    <img src="icons/linkedin.png" alt="LinkedIn">
-                    <span>LinkedIn</span>
-                </a>
-                <a href="#" class="social-link">
-                    <img src="icons/behance.png" alt="Behance">
-                    <span>Behance</span>
-                </a>
-                <a href="#" class="social-link">
-                    <img src="icons/github.png" alt="GitHub">
-                    <span>GitHub</span>
-                </a>
-            </div>
-            <div class="follower-counts">
-                <p>Follow us for updates:</p>
-                <ul>
-                    <li>LinkedIn: 1000 followers</li>
-                    <li>Behance: 800 followers</li>
-                    <li>GitHub: 1200 followers</li>
-                </ul>
-            </div>
-            <div class="testimonials">
-                <h3>Testimonials</h3>
-                <div class="testimonial">
-                    <blockquote>"John's work is exceptional! Highly recommend him."</blockquote>
-                    <cite>- Jane Doe, CEO</cite>
-                </div>
-                <!-- Add more testimonials as needed -->
-            </div>
-        </div>
-    </section>
-
-    <section class="faq-section">
-        <div class="container">
-            <h2>FAQ</h2>
-            <div class="faq-item">
-                <h3>What services do you offer?</h3>
-                <p>We offer web design, graphic design, and UI/UX design services.</p>
-            </div>
-            <div class="faq-item">
-                <h3>How long does a project typically take?</h3>
-                <p>Project timelines vary depending on the scope and complexity. We provide estimated timelines during project planning.</p>
-            </div>
-            <!-- Add more FAQ items as needed -->
-        </div>
-    </section>
-
-    <section class="achievements">
-        <div class="container">
-            <h2>Achievements</h2>
-            <div class="achievement-item">
-                <img src="icons/award.png" alt="Award Icon">
-                <p>Winner of Web Design Excellence Award 2023</p>
-            </div>
-            <div class="achievement-item">
-                <img src="icons/certificate.png" alt="Certificate Icon">
-                <p>Certified Web Designer</p>
-            </div>
-            <!-- Add more achievements as needed -->
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-left">
-                <nav>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="footer-right">
-                <p>&copy; 2024 Your Website. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="#" class="icon">
-                        <img src="icons/facebook.png" alt="Facebook">
-                    </a>
-                    <a href="#" class="icon">
-                        <img src="icons/twitter.png" alt="Twitter">
-                    </a>
-                    <a href="#" class="icon">
-                        <img src="icons/instagram.png" alt="Instagram">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
+        setInterval(draw, 50);
+    </script>
 </body>
 </html>
